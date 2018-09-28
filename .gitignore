@@ -1,0 +1,9 @@
+# Ignore folders
+bin/
+obj/
+.vscode/
+.vs/
+
+# Ignore files
+.DS_Store
+*.sln
