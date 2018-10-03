@@ -11,9 +11,10 @@
   <PropertyGroup>
     <Authors>He55</Authors>
     <Version>0.1.0</Version>
-    <Description>dotnet-zip is compression tool. Supported Archive Formats: Zip, GZip, Tar, Rar, 7Zip.</Description>
+    <Description>This is a Command line tool. Supported Archive Formats: Zip, GZip, Tar, Rar, 7Zip.</Description>
     <PackageTags>dotnet;tool;zip;gzip;tar;rar;7zip</PackageTags>
-    <PackageProjectUrl>https://github.com/He55/dotnet-tools</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/He55</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/He55/dotnet-tools</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/He55/dotnet-tools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>null</PackageReleaseNotes>
   </PropertyGroup>

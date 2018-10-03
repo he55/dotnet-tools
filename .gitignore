@@ -1,9 +1,14 @@
-# Ignore folders
+# VSCode
 bin/
 obj/
 .vscode/
-.vs/
 
-# Ignore files
-.DS_Store
+# VS
+.vs/
 *.sln
+
+# Xcode
+xcuserdata/
+
+#macOS
+.DS_Store

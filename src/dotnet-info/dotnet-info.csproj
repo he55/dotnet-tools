@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>Latest</LangVersion>
     <RootNamespace>dotnet_info</RootNamespace>
     <PackAsTool>true</PackAsTool>
   </PropertyGroup>
@@ -11,9 +11,10 @@
   <PropertyGroup>
     <Authors>He55</Authors>
     <Version>0.1.0</Version>
-    <Description>null</Description>
-    <PackageTags>dotnet;tool;info;sysinfo</PackageTags>
-    <PackageProjectUrl>https://github.com/He55/dotnet-tools</PackageProjectUrl>
+    <Description>This is a Command line tool.</Description>
+    <PackageTags>dotnet;tool;info</PackageTags>
+    <PackageProjectUrl>https://github.com/He55</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/He55/dotnet-tools</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/He55/dotnet-tools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>null</PackageReleaseNotes>
   </PropertyGroup>

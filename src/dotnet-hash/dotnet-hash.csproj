@@ -11,9 +11,10 @@
   <PropertyGroup>
     <Authors>He55</Authors>
     <Version>0.1.0</Version>
-    <Description>Command line hash tool. Supported: MD5, SHA1, SHA256, SHA384, SHA512.</Description>
+    <Description>This is a Command line tool. Supported: MD5, SHA1, SHA256, SHA384, SHA512.</Description>
     <PackageTags>dotnet;tool;hash;md5;sha1;sha256;sha384;sha512</PackageTags>
-    <PackageProjectUrl>https://github.com/He55/dotnet-tools</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/He55</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/He55/dotnet-tools</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/He55/dotnet-tools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>null</PackageReleaseNotes>
   </PropertyGroup>
