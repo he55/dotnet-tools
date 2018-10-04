@@ -1,4 +1,4 @@
-# VSCode
+# VS Code
 bin/
 obj/
 .vscode/
@@ -10,5 +10,8 @@ obj/
 # Xcode
 xcuserdata/
 
-#macOS
+# macOS
 .DS_Store
+
+# other
+images/
