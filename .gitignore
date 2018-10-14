@@ -3,7 +3,7 @@ bin/
 obj/
 .vscode/
 
-# VS
+# Visual Studio
 .vs/
 *.sln
 
@@ -13,5 +13,5 @@ xcuserdata/
 # macOS
 .DS_Store
 
-# other
+# Other
 images/
