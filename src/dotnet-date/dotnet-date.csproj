@@ -1,21 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <LangVersion>Latest</LangVersion>
     <RootNamespace>dotnet_date</RootNamespace>
-    <PackAsTool>true</PackAsTool>
-  </PropertyGroup>
 
-  <PropertyGroup>
-    <Authors>He55</Authors>
-    <Version>0.1.0</Version>
+    <!-- NuGet -->
     <Description>This is a Command line tool.</Description>
     <PackageTags>dotnet;tool;date;time</PackageTags>
-    <PackageProjectUrl>https://github.com/He55</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/He55/dotnet-tools</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/He55/dotnet-tools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>null</PackageReleaseNotes>
   </PropertyGroup>
 
