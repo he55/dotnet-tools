@@ -1,15 +1,29 @@
-using System;
+﻿using System;
 
 namespace Chinese24SolarTerms
 {
+    /// <summary>
+    /// 二十四节气
+    /// </summary>
     public class Chinese24SolarTermsCalendar
     {
         private readonly DateTimeOffset _datetime;
         private readonly int _year;
 
-        public Chinese24SolarTermsInfo PreviousSolarTerm { get; private set; }
-        public Chinese24SolarTermsInfo CurrentSolarTerm { get; private set; }
-        public Chinese24SolarTermsInfo NextSolarTerm { get; private set; }
+        /// <summary>
+        /// 上一个节气
+        /// </summary>
+        public SolarTermInfo PreviousSolarTerm { get; private set; }
+
+        /// <summary>
+        /// 当前节气
+        /// </summary>
+        public SolarTermInfo CurrentSolarTerm { get; private set; }
+
+        /// <summary>
+        /// 下一个节气
+        /// </summary>
+        public SolarTermInfo NextSolarTerm { get; private set; }
 
         public Chinese24SolarTermsCalendar(DateTimeOffset datetime)
         {
@@ -21,68 +35,76 @@ namespace Chinese24SolarTerms
             _datetime = datetime;
             _year = datetime.Year;
 
-            GetCurrentSolarTerm();
+            CalcSolarTerm();
         }
 
-        public static Chinese24SolarTermsInfo[] GetSolarTermsWithYear(int year)
+        /// <summary>
+        /// 获取指定年份的所有节气
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <returns></returns>
+        public static SolarTermInfo[] GetSolarTermsWithYear(int year)
         {
-            Chinese24SolarTermsInfo[] solarTerms = new Chinese24SolarTermsInfo[24];
+            SolarTermInfo[] solarTerms = new SolarTermInfo[24];
             for (int i = 0; i < 24; i++)
             {
-                solarTerms[i] = new Chinese24SolarTermsInfo(year, i);
+                solarTerms[i] = new SolarTermInfo(year, i);
             }
 
             return solarTerms;
         }
 
-        private void GetCurrentSolarTerm()
+        private void CalcSolarTerm()
         {
             for (int i = 0; i < 24; i++)
             {
-                DateTimeOffset datetime = Chinese24SolarTermsData.GetDateTimeWithSolarTerm(_year, i);
+                DateTimeOffset datetime = Chinese24SolarTermsData.GetSolarTerm(_year, i);
                 if (datetime.DayOfYear > _datetime.DayOfYear)
                 {
                     // i 表示的是下一个节气
                     switch (i)
                     {
                         case 0: // 下一个节气在本年，前一个节气和当前节气在上一年
-                            PreviousSolarTerm = new Chinese24SolarTermsInfo(_year - 1, 22);
-                            CurrentSolarTerm = new Chinese24SolarTermsInfo(_year - 1, 23);
-                            NextSolarTerm = new Chinese24SolarTermsInfo(_year, 0);
+                            PreviousSolarTerm = new SolarTermInfo(_year - 1, 22);
+                            CurrentSolarTerm = new SolarTermInfo(_year - 1, 23);
+                            NextSolarTerm = new SolarTermInfo(_year, 0);
                             return;
                         case 1: // 下一个节气和当前节气在本年，前一个节气在上一年
-                            PreviousSolarTerm = new Chinese24SolarTermsInfo(_year - 1, 23);
-                            CurrentSolarTerm = new Chinese24SolarTermsInfo(_year, 0);
-                            NextSolarTerm = new Chinese24SolarTermsInfo(_year, 1);
+                            PreviousSolarTerm = new SolarTermInfo(_year - 1, 23);
+                            CurrentSolarTerm = new SolarTermInfo(_year, 0);
+                            NextSolarTerm = new SolarTermInfo(_year, 1);
                             return;
                         default: // 下一个节气、前一个节气和当前节气在本年
-                            PreviousSolarTerm = new Chinese24SolarTermsInfo(_year, i - 2);
-                            CurrentSolarTerm = new Chinese24SolarTermsInfo(_year, i - 1);
-                            NextSolarTerm = new Chinese24SolarTermsInfo(_year, i);
+                            PreviousSolarTerm = new SolarTermInfo(_year, i - 2);
+                            CurrentSolarTerm = new SolarTermInfo(_year, i - 1);
+                            NextSolarTerm = new SolarTermInfo(_year, i);
                             return;
                     }
                 }
             }
 
             // 下一个节气在次年，前一个节气和当前节气在本年
-            PreviousSolarTerm = new Chinese24SolarTermsInfo(_year, 22);
-            CurrentSolarTerm = new Chinese24SolarTermsInfo(_year, 23);
-            NextSolarTerm = new Chinese24SolarTermsInfo(_year + 1, 0);
+            PreviousSolarTerm = new SolarTermInfo(_year, 22);
+            CurrentSolarTerm = new SolarTermInfo(_year, 23);
+            NextSolarTerm = new SolarTermInfo(_year + 1, 0);
         }
     }
 
-    public readonly struct Chinese24SolarTermsInfo
+    /// <summary>
+    /// 节气信息
+    /// </summary>
+    public readonly struct SolarTermInfo
     {
         public int Year { get; }
         public int Index { get; }
         public DateTimeOffset DateTime { get; }
         public string Name { get; }
 
-        public Chinese24SolarTermsInfo(int year, int index)
+        public SolarTermInfo(int year, int index)
         {
             Year = year;
             Index = index;
-            DateTime = Chinese24SolarTermsData.GetDateTimeWithSolarTerm(year, index);
+            DateTime = Chinese24SolarTermsData.GetSolarTerm(year, index);
             Name = Chinese24SolarTermsData.s_solarName[index];
         }
 
@@ -114,7 +136,7 @@ namespace Chinese24SolarTerms
         internal static readonly DateTimeOffset s_baseDateTime =
             new DateTimeOffset(1900, 1, 6, 2, 5, 0, TimeSpan.FromHours(8));
 
-        internal static DateTimeOffset GetDateTimeWithSolarTerm(int year, int index)
+        internal static DateTimeOffset GetSolarTerm(int year, int index)
         {
             // 以基准时间作参照，y 年的第 i 个节气的时间（按分钟计算）
             double minutes = 525948.76 * (year - 1900) + s_solarData[index];
