@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace dotnet_wallpaper
+namespace Chinese24SolarTerms
 {
     public class Program
     {
@@ -22,8 +22,8 @@ namespace dotnet_wallpaper
                 return;
             }
 
-            var jieqi = new JieqiCalendar();
-            var imagePath = Path.Combine(AppContext.BaseDirectory, $"images/{jieqi.Now.Number}.jpg");
+            var jieqi = new Chinese24SolarTermsCalendar(DateTimeOffset.Now);
+            var imagePath = Path.Combine(AppContext.BaseDirectory, $"images/{jieqi.CurrentSolarTerm.Index + 1}.jpg");
 
             if (File.Exists(imagePath))
             {
