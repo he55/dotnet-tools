@@ -4,17 +4,17 @@ using System.Runtime.InteropServices;
 
 namespace Chinese24SolarTerms
 {
-    public class Program
+    internal class Program
     {
-        private const string libCocoa = "libCocoa.dylib";
+        const string libCocoa = "libCocoa.dylib";
 
         [DllImport(libCocoa)]
-        public static extern IntPtr getDesktopImage();
+        static extern IntPtr getDesktopImage();
 
         [DllImport(libCocoa)]
-        public static extern bool setDesktopImage(string path);
+        static extern bool setDesktopImage(string path);
 
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             Chinese24SolarTermsCalendar calendar = new Chinese24SolarTermsCalendar(DateTimeOffset.Now);
             Console.WriteLine($"上一个节气: {calendar.PreviousSolarTerm}");
@@ -23,7 +23,7 @@ namespace Chinese24SolarTerms
 
             int year = DateTimeOffset.Now.Year;
             Console.WriteLine($"\n{year} 年所有节气:");
-            SolarTermInfo[]  solarTermInfos = Chinese24SolarTermsCalendar.GetSolarTermsWithYear(year);
+            SolarTermInfo[] solarTermInfos = Chinese24SolarTermsCalendar.GetSolarTermsWithYear(year);
             for (int i = 0; i < solarTermInfos.Length; i++)
             {
                 Console.WriteLine($"{solarTermInfos[i]}");
@@ -35,9 +35,7 @@ namespace Chinese24SolarTerms
                 return;
             }
 
-            var jieqi = new Chinese24SolarTermsCalendar(DateTimeOffset.Now);
-            var imagePath = Path.Combine(AppContext.BaseDirectory, $"images/{jieqi.CurrentSolarTerm.Index + 1}.jpg");
-
+            string imagePath = Path.Combine(AppContext.BaseDirectory, $"images/{calendar.CurrentSolarTerm.Index + 1}.jpg");
             if (File.Exists(imagePath))
             {
                 setDesktopImage(imagePath);

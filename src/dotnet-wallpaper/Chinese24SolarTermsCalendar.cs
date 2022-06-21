@@ -45,13 +45,13 @@ namespace Chinese24SolarTerms
         /// <returns></returns>
         public static SolarTermInfo[] GetSolarTermsWithYear(int year)
         {
-            SolarTermInfo[] solarTerms = new SolarTermInfo[24];
+            SolarTermInfo[] solarTermInfos = new SolarTermInfo[24];
             for (int i = 0; i < 24; i++)
             {
-                solarTerms[i] = new SolarTermInfo(year, i);
+                solarTermInfos[i] = new SolarTermInfo(year, i);
             }
 
-            return solarTerms;
+            return solarTermInfos;
         }
 
         private void CalcSolarTerm()
