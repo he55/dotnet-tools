@@ -1,6 +1,8 @@
+using ConsoleApp5Wall;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Chinese24SolarTerms
 {
@@ -29,8 +31,16 @@ namespace Chinese24SolarTerms
                 Console.WriteLine($"{solarTermInfos[i]}");
             }
 
+
+            IDesktopWallpaper desktopWallpaper = (IDesktopWallpaper)new DesktopWallpaper();
+            desktopWallpaper.GetWallpaper(null, out StringBuilder wallpaper);
+
+
             if (args.Length > 0 && File.Exists(args[0]))
             {
+                desktopWallpaper.SetWallpaper(null, args[0]);
+                return;
+
                 setDesktopImage(args[0]);
                 return;
             }
@@ -38,6 +48,9 @@ namespace Chinese24SolarTerms
             string imagePath = Path.Combine(AppContext.BaseDirectory, $"images/{calendar.CurrentSolarTerm.Index + 1}.jpg");
             if (File.Exists(imagePath))
             {
+                desktopWallpaper.SetWallpaper(null, imagePath);
+                return;
+
                 setDesktopImage(imagePath);
             }
         }
